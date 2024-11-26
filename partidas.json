@@ -1,0 +1,257 @@
+[
+    {
+        "Nombre": "AXEL",
+        "Puntaje": 1200,
+        "Fecha": "03/11/2024"
+    },
+    {
+        "Nombre": "SEBAS",
+        "Puntaje": 1050,
+        "Fecha": "08/11/2024"
+    },
+    {
+        "Nombre": "ARIEL",
+        "Puntaje": 1000,
+        "Fecha": "06/11/2024"
+    },
+    {
+        "Nombre": "SANTIAGO",
+        "Puntaje": 850,
+        "Fecha": "22/11/2024"
+    },
+    {
+        "Nombre": "IGNACIO",
+        "Puntaje": 800,
+        "Fecha": "04/11/2024"
+    },
+    {
+        "Nombre": "LUCAS",
+        "Puntaje": 700,
+        "Fecha": "01/11/2024"
+    },
+    {
+        "Nombre": "CARLOS",
+        "Puntaje": 500,
+        "Fecha": "26/11/2024"
+    },
+    {
+        "Nombre": "GABRIEL",
+        "Puntaje": 400,
+        "Fecha": "04/11/2024"
+    },
+    {
+        "Nombre": "",
+        "Puntaje": 350,
+        "Fecha": "21/11/2024"
+    },
+    {
+        "Nombre": "SEBASTIAN",
+        "Puntaje": 300,
+        "Fecha": "18/11/2024"
+    },
+    {
+        "Nombre": "RUBEN",
+        "Puntaje": 200,
+        "Fecha": "02/12/2024"
+    },
+    {
+        "Nombre": "EMA",
+        "Puntaje": 200,
+        "Fecha": "04/11/2024"
+    },
+    {
+        "Nombre": "PEPE",
+        "Puntaje": 150,
+        "Fecha": "21/11/2024"
+    },
+    {
+        "Nombre": "PEDRO",
+        "Puntaje": 150,
+        "Fecha": "08/11/2024"
+    },
+    {
+        "Nombre": "RAUL",
+        "Puntaje": 100,
+        "Fecha": "01/11/2024"
+    },
+    {
+        "Nombre": "LAURA",
+        "Puntaje": 50,
+        "Fecha": "08/11/2024"
+    },
+    {
+        "Nombre": "",
+        "Puntaje": 50,
+        "Fecha": "08/11/2024"
+    },
+    {
+        "Nombre": "",
+        "Puntaje": 50,
+        "Fecha": "08/11/2024"
+    },
+    {
+        "Nombre": "",
+        "Puntaje": 0,
+        "Fecha": "08/11/2024"
+    },
+    {
+        "Nombre": "",
+        "Puntaje": 0,
+        "Fecha": "08/11/2024"
+    },
+    {
+        "Nombre": "",
+        "Puntaje": 0,
+        "Fecha": "22/11/2024"
+    },
+    {
+        "Nombre": "",
+        "Puntaje": 0,
+        "Fecha": "08/11/2024"
+    },
+    {
+        "Nombre": "PEDRO",
+        "Puntaje": -50,
+        "Fecha": "15/11/2024"
+    },
+    {
+        "Nombre": "LLL",
+        "Puntaje": -50,
+        "Fecha": "21/11/2024"
+    },
+    {
+        "Nombre": "LLL",
+        "Puntaje": -50,
+        "Fecha": "21/11/2024"
+    },
+    {
+        "Nombre": "",
+        "Puntaje": -50,
+        "Fecha": "08/11/2024"
+    },
+    {
+        "Nombre": "",
+        "Puntaje": -50,
+        "Fecha": "21/11/2024"
+    },
+    {
+        "Nombre": "PEDRO",
+        "Puntaje": -50,
+        "Fecha": "12/11/2024"
+    },
+    {
+        "Nombre": "PEDRO",
+        "Puntaje": -150,
+        "Fecha": "21/11/2024"
+    },
+    {
+        "Nombre": "",
+        "Puntaje": -150,
+        "Fecha": "08/11/2024"
+    },
+    {
+        "Nombre": "",
+        "Puntaje": -150,
+        "Fecha": "08/11/2024"
+    },
+    {
+        "Nombre": "PEDRO",
+        "Puntaje": -150,
+        "Fecha": "08/12/2024"
+    },
+    {
+        "Nombre": "PEDRO",
+        "Puntaje": -150,
+        "Fecha": "21/11/2024"
+    },
+    {
+        "Nombre": "",
+        "Puntaje": -150,
+        "Fecha": "10/11/2024"
+    },
+    {
+        "Nombre": "RICARDO",
+        "Puntaje": -50,
+        "Fecha": "22/11/2024"
+    },
+    {
+        "Nombre": "",
+        "Puntaje": 450,
+        "Fecha": "22/11/2024"
+    },
+    {
+        "Nombre": "RIQUELME",
+        "Puntaje": 750,
+        "Fecha": "22/11/2024"
+    },
+    {
+        "Nombre": "",
+        "Puntaje": 0,
+        "Fecha": "22/11/2024"
+    },
+    {
+        "Nombre": "",
+        "Puntaje": 0,
+        "Fecha": "22/11/2024"
+    },
+    {
+        "Nombre": "",
+        "Puntaje": 0,
+        "Fecha": "22/11/2024"
+    },
+    {
+        "Nombre": "",
+        "Puntaje": 0,
+        "Fecha": "23/11/2024"
+    },
+    {
+        "Nombre": "",
+        "Puntaje": 0,
+        "Fecha": "24/11/2024"
+    },
+    {
+        "Nombre": "",
+        "Puntaje": 0,
+        "Fecha": "24/11/2024"
+    },
+    {
+        "Nombre": "",
+        "Puntaje": 0,
+        "Fecha": "24/11/2024"
+    },
+    {
+        "Nombre": "",
+        "Puntaje": 0,
+        "Fecha": "24/11/2024"
+    },
+    {
+        "Nombre": "",
+        "Puntaje": 0,
+        "Fecha": "24/11/2024"
+    },
+    {
+        "Nombre": "",
+        "Puntaje": 0,
+        "Fecha": "24/11/2024"
+    },
+    {
+        "Nombre": "ROJAN",
+        "Puntaje": 0,
+        "Fecha": "25/11/2024"
+    },
+    {
+        "Nombre": "",
+        "Puntaje": 0,
+        "Fecha": "25/11/2024"
+    },
+    {
+        "Nombre": "",
+        "Puntaje": 0,
+        "Fecha": "25/11/2024"
+    },
+    {
+        "Nombre": "",
+        "Puntaje": 0,
+        "Fecha": "26/11/2024"
+    }
+]
