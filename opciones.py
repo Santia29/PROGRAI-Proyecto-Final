@@ -2,6 +2,8 @@ import pygame
 from constantes import *
 from funciones import *
 import config
+from juego import sonido_correcto,error_sonido
+
 
 pygame.init() #Inicio del proyecto
 
@@ -51,26 +53,59 @@ click_sonido.set_volume(volumen_click_sonido/100)
 
 def mostrar_opciones(pantalla:pygame.Surface,eventos):
     global volumen
+    global volumen_efectos
 
     retorno = "opciones"
     
     for evento in eventos:
+        pygame.mixer.music.set_volume(config.volumen / 100)
         if evento.type == pygame.MOUSEBUTTONDOWN:
             if boton_suma_musica['rectangulo'].collidepoint(evento.pos):
-                if volumen < 96: 
-                    volumen += 5
+                if config.volumen < 96: 
+                    config.volumen += 5
                     click_sonido.play()
             elif boton_resta_musica['rectangulo'].collidepoint(evento.pos):
-                if volumen > 0: 
-                    volumen -= 5
+                if config.volumen > 0: 
+                    config.volumen -= 5
                     click_sonido.play()
             elif boton_volver['rectangulo'].collidepoint(evento.pos):
                 retorno = "menu"
                 click_sonido.play()
             elif volumen_apagado_musica['rectangulo'].collidepoint(evento.pos):
-                volumen = 0
+                config.volumen = 0
             elif volumen_encendido_musica['rectangulo'].collidepoint(evento.pos):
-                volumen = 100
+                config.volumen = 100
+
+            #MANIPULA LOS EVENTOS DE LOS EFECTOS DE SONIDO DEL JUEGO
+            elif boton_suma_efectos["rectangulo"].collidepoint(evento.pos):
+                 if volumen_efectos < 96:
+                    volumen_efectos += 5
+                    sonido_correcto.set_volume(volumen_efectos / 100)
+                    error_sonido.set_volume(volumen_efectos / 100)
+                    click_sonido.play()
+
+            elif boton_resta_efectos["rectangulo"].collidepoint(evento.pos):
+                if volumen_efectos > 0:
+                    volumen_efectos -= 5
+                    # Actualizamos el volumen de los tres sonidos
+                    error_sonido.set_volume(volumen_efectos / 100)
+                    sonido_correcto.set_volume(volumen_efectos / 100)
+                    click_sonido.play()
+                 
+            elif volumen_apagado_efectos["rectangulo"].collidepoint(evento.pos):
+                volumen_efectos = 0
+                sonido_correcto.set_volume(0)
+                error_sonido.set_volume(0)
+                
+                
+            elif volumen_encendido_efectos["rectangulo"].collidepoint(evento.pos):
+                volumen_efectos = 100
+                # Restauramos el volumen de los tres sonidos
+                sonido_correcto.set_volume(1)
+                error_sonido.set_volume(1)
+                #click_sonido.play()
+
+
                 #SONIDO DE MUSICA
         elif evento.type == pygame.KEYDOWN:  # Detecta teclas presionadas
             print(f"Tecla presionada: {evento.key}")  # Debug para mostrar las teclas detectadas
@@ -82,7 +117,6 @@ def mostrar_opciones(pantalla:pygame.Surface,eventos):
                 if config.volumen > 0:
                     config.volumen -= 5
                     click_sonido.play()
-
         elif evento.type == pygame.QUIT:
             retorno = "salir"
     # Sincronizar el volumen global con la configuración
@@ -103,11 +137,15 @@ def mostrar_opciones(pantalla:pygame.Surface,eventos):
     pantalla.blit(boton_resta_musica['superficie'],boton_resta_musica['rectangulo'])
     pantalla.blit(boton_suma_musica['superficie'],boton_suma_musica['rectangulo'])
     
+    pantalla.blit(boton_volver["superficie"], boton_volver["rectangulo"])
+
+    pantalla.blit(volumen_encendido_efectos['superficie'], volumen_encendido_efectos['rectangulo'])
+    pantalla.blit(volumen_apagado_efectos['superficie'], volumen_apagado_efectos['rectangulo'])
+    pantalla.blit(recuadro_volumen_efectos, (275, 100))
     
     pantalla.blit(volumen_encendido_musica['superficie'],volumen_encendido_musica['rectangulo'])
     pantalla.blit(volumen_apagado_musica['superficie'],volumen_apagado_musica['rectangulo'])
-    pantalla.blit(boton_volver["superficie"], boton_volver["rectangulo"])
-    pantalla.blit(recuadro_volumen_musica,(280,190))
+    pantalla.blit(recuadro_volumen_musica,(275,500))
 
 
     blit_text(boton_suma_efectos['superficie'],"VOL +",(5,25),fuente_boton,COLOR_NEGRO)
@@ -115,7 +153,8 @@ def mostrar_opciones(pantalla:pygame.Surface,eventos):
     blit_text(boton_volver['superficie'],"VOLVER",(50,20),fuente_boton,COLOR_NEGRO)
     blit_text(boton_suma_musica['superficie'],"VOL +",(5,25),fuente_boton,COLOR_NEGRO)
     blit_text(boton_resta_musica['superficie'],"VOL -",(5,25),fuente_boton,COLOR_NEGRO)
-    blit_text(pantalla,f"{volumen} %",(300,220),fuente_volumen,COLOR_NEGRO)
-         
     
+    blit_text(pantalla,f"{volumen} %",(300,530),fuente_volumen,COLOR_NEGRO)
+    blit_text(pantalla,f"{volumen_efectos} %",(280,132),fuente_volumen,COLOR_NEGRO)     
+
     return retorno
