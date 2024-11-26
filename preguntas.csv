@@ -1,0 +1,16 @@
+id,pregunta,respuesta_1,respuesta_2,respuesta_3,respuesta_4,correcta,porc_aciertos,cant_fallos,cant_aciertos,cant_veces_preguntada
+4,¿Qué parque nacional alberga el monte Aconcagua?,Parque Nacional Los Glaciares,Parque Nacional Aconcagua,Parque Nacional Nahuel Huapi,Parque Nacional Lanín,2,36.36363636363637,7,4,11
+7,¿Qué variedad de uva es típica de Mendoza?,Malbec,Chardonnay,Torrontés,Bonarda,2,33.33333333333333,6,3,9
+14,¿Quién es considerado el máximo exponente del tango en Argentina?,Carlos Gardel,Astor Piazzolla,Aníbal Troilo,Julio Sosa,3,7.6923076923076925,12,1,13
+6,¿Cuál era el apodo de José de San Martín durante las guerras de independencia?,El Gran Libertador,El Protector de los Andes,El Padre de la Patria,El General de los Andes,1,63.63636363636363,4,7,11
+1,¿Qué edificio emblemático se encuentra en la Plaza de Mayo?,Casa Rosada,Cabildo,Teatro Colón,Catedral Metropolitana,3,26.666666666666668,11,4,15
+2,¿Qué álbum de Soda Stereo incluye la canción 'De Música Ligera'?,Canción Animal,Dynamo,Signos,Sueño Stereo,2,45.0,11,9,20
+15,¿En qué ciudad nació Jorge Luis Borges?,Rosario,Buenos Aires,Mendoza,Córdoba,2,63.63636363636363,4,7,11
+3,¿Qué escritor argentino es conocido como el autor del 'Facundo'?,Domingo Faustino Sarmiento,José Hernández,Esteban Echeverría,Leopoldo Lugones,1,11.11111111111111,8,1,9
+9,¿En qué país se celebró la primera Copa Mundial de Fútbol?,Brasil,Uruguay,Argentina,Italia,2,63.63636363636363,4,7,11
+8,¿Qué moneda utilizaba Argentina durante la presidencia de Bernardino Rivadavia?,Peso Moneda Nacional,Real,Austral,Escudo,1,68.75,5,11,16
+11,¿Qué relación tenía Eva Perón con el presidente Juan Domingo Perón?,Esposa,Hermana,Hija,Prima,1,18.181818181818183,9,2,11
+5,¿Qué río atraviesa la ciudad de Buenos Aires?,Río Paraná,Río de la Plata,Río Uruguay,Río Salado,2,30.0,7,3,10
+12,¿Qué ingrediente es fundamental para preparar el mate?,Yerba,Azúcar,Cáscara de Naranja,Menta,1,22.22222222222222,7,2,9
+10,¿Qué hecho histórico ocurrió en Argentina en 1816?,La Batalla de Tucumán,La Declaración de la Independencia,La Revolución de Mayo,La Batalla de Suipacha,2,9.523809523809524,19,2,21
+13,¿Cuál de estos balnearios se encuentra en Mar del Plata?,Las Grutas,La Perla,Cariló,Pinamar,1,57.14285714285714,6,8,14
