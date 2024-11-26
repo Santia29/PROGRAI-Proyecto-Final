@@ -53,18 +53,10 @@ for carta in cartas_respuestas:
 volumen_sonido_correcto = 100
 volumen_sonido_error = 100
 
-click_sonido = pygame.mixer.Sound("sonidos/correcta.mp3")
-click_sonido.set_volume(volumen_sonido_correcto/100)
+sonido_correcto = pygame.mixer.Sound("sonidos/correcta.mp3")
+sonido_correcto.set_volume(volumen_sonido_correcto/100)
 error_sonido = pygame.mixer.Sound("sonidos/error.mp3")
 error_sonido.set_volume(volumen_sonido_error/100)
-
-#Variables
-puntuacion = 0
-random.shuffle(lista_preguntas)
-indice_pregunta = 0
-vidas_actuales = CANTIDAD_OPORTUNIDADES
-segundos = 0
-minutos = MINUTOS
 
 #Variables
 puntuacion = 0
@@ -147,27 +139,30 @@ def mostrar_juego(pantalla:pygame.Surface, eventos):
             else:
                 segundos -= 1
 
+        aciertos_consecutivos = 0
+        maxima_respuestas_por_vida = 3
         if evento.type == pygame.MOUSEBUTTONDOWN:      
-            aciertos_consecutivos = 0
-            maxima_respuestas_por_vida = 3
             for i in range(len(cartas_respuestas)):
                 if cartas_respuestas[i]["rectangulo"].collidepoint(evento.pos):
                     if int(pregunta['correcta']) == (i + 1):
-                        click_sonido.play()
+                        sonido_correcto.play()
                         print("RESPUESTA CORRECTA")
                         #Integracion Estadisticas
-                        respueta_correcta = True
-                        if respueta_correcta == True:
-                            aciertos_consecutivos +=1
-                            if aciertos_consecutivos == maxima_respuestas_por_vida:
-                                vidas_actuales += 1
-                                aciertos_consecutivos = 0
-                                ##REVISAR. NO AGREGA VIDAS.
-                        else: 
+                        
+                        aciertos_consecutivos += 1
+                        if aciertos_consecutivos >= maxima_respuestas_por_vida:
+                            vidas_actuales += 1  # Incrementa vidas_actuales
                             aciertos_consecutivos = 0
-                        pantalla.blit(cuadro_vidas['superficie'], (380, 10))
-                        generar_estadistica(pregunta,lista_preguntas,True)              
-                        carta_pregunta['superficie'].fill((COLOR_GRIS))
+                            cuadro_vidas['superficie'].fill((COLOR_ROJO))
+                            pantalla.blit(cuadro_vidas['superficie'], (380, 10))
+                            # blit_text(cuadro_vidas['superficie'], f"VIDAS: {vidas_actuales}", (10, 20), fuente_vidas, COLOR_BLANCO)
+
+                                ##REVISAR. NO AGREGA VIDAS.
+                        # else: 
+                        #     aciertos_consecutivos = 0
+                        # pantalla.blit(cuadro_vidas['superficie'], (380, 10))
+                        # generar_estadistica(pregunta,lista_preguntas,True)              
+                        # carta_pregunta['superficie'].fill((COLOR_GRIS))
                         for carta in cartas_respuestas:
                             carta['superficie'].fill(COLOR_DORADO)
 
@@ -245,7 +240,7 @@ def mostrar_juego(pantalla:pygame.Surface, eventos):
     # Cuadro Vidas
     pantalla.blit(cuadro_vidas['superficie'], (380, 10))
     blit_text(cuadro_vidas['superficie'], f"VIDAS: {vidas_actuales}", (10, 20), fuente_vidas, COLOR_BLANCO)
-
+    
     # Cuadro tiempo
     pantalla.blit(cuadro_tiempo['superficie'], (210, 10))
     blit_text(cuadro_tiempo['superficie'], f"TIEMPO      {minutos}:{segundos}", (21, 5), fuente_tiempo, COLOR_BLANCO)
