@@ -256,15 +256,11 @@ def mostrar_juego(pantalla:pygame.Surface, eventos):
     blit_text(cuadro_pregunta['superficie'], pregunta['pregunta'], (10, 10), fuente_pregunta)
     coordenadas_botones = [(205, 385), (205, 485), (205, 585), (205, 685)]
     texto_superficie = pygame.Surface(imagen_boton.get_size(), pygame.SRCALPHA)
-    texto_superficie.fill((0, 0, 0, 0))  # Rellenar con transparente
+    texto_superficie.fill((0, 0, 0, 0)) 
     for i, coordenadas in enumerate(coordenadas_botones):
-        # blittear el botón
         cartas_respuestas[i]['rectangulo'] = pantalla.blit(imagen_boton, coordenadas)    
-        # Limpiar la superficie temporal (opcional, pero recomendado)
         texto_superficie.fill((0, 0, 0, 0))
-        # blittear el texto en la superficie temporal
         blit_texto_en_boton(texto_superficie, pregunta[f"respuesta_{i+1}"], (20, 45), fuente_respuesta, COLOR_NEGRO)
-        # blittear la superficie temporal en el botón
         pantalla.blit(texto_superficie, coordenadas)
         
     # Mostrar puntuación
