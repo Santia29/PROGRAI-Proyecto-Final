@@ -307,18 +307,6 @@ def intercambiar_matriz(lista,i,j):
     lista[i] = lista[j]
     lista[j] = aux
 
-# #LOGARITMO COMODIN
-# def usar_comodin_pasar(indice_pregunta, lista_preguntas):
-#     """
-#     Permite pasar a la siguiente pregunta sin cambiar puntos ni vidas.
-#     Si es la última pregunta, reinicia el índice y mezcla las preguntas.
-#     """
-#     indice_pregunta += 1
-#     if indice_pregunta >= len(lista_preguntas):
-#         indice_pregunta = 0
-#         random.shuffle(lista_preguntas)
-#     return indice_pregunta
-
 def blit_texto_en_boton(superficie, texto, coordenadas, fuente, color, fondo=(0, 0, 0, 0)):
     # Crear una superficie temporal con el mismo tamaño que el botón
     texto_superficie = pygame.Surface(superficie.get_size(), pygame.SRCALPHA)
