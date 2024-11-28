@@ -1,16 +1,32 @@
 id,pregunta,respuesta_1,respuesta_2,respuesta_3,respuesta_4,correcta,porc_aciertos,cant_fallos,cant_aciertos,cant_veces_preguntada
-4,¿Qué parque nacional alberga el monte Aconcagua?,Parque Nacional Los Glaciares,Parque Nacional Aconcagua,Parque Nacional Nahuel Huapi,Parque Nacional Lanín,2,36.36363636363637,7,4,11
-7,¿Qué variedad de uva es típica de Mendoza?,Malbec,Chardonnay,Torrontés,Bonarda,2,33.33333333333333,6,3,9
-14,¿Quién es considerado el máximo exponente del tango en Argentina?,Carlos Gardel,Astor Piazzolla,Aníbal Troilo,Julio Sosa,3,7.6923076923076925,12,1,13
-6,¿Cuál era el apodo de José de San Martín durante las guerras de independencia?,El Gran Libertador,El Protector de los Andes,El Padre de la Patria,El General de los Andes,1,63.63636363636363,4,7,11
-1,¿Qué edificio emblemático se encuentra en la Plaza de Mayo?,Casa Rosada,Cabildo,Teatro Colón,Catedral Metropolitana,3,26.666666666666668,11,4,15
-2,¿Qué álbum de Soda Stereo incluye la canción 'De Música Ligera'?,Canción Animal,Dynamo,Signos,Sueño Stereo,2,45.0,11,9,20
-15,¿En qué ciudad nació Jorge Luis Borges?,Rosario,Buenos Aires,Mendoza,Córdoba,2,63.63636363636363,4,7,11
-3,¿Qué escritor argentino es conocido como el autor del 'Facundo'?,Domingo Faustino Sarmiento,José Hernández,Esteban Echeverría,Leopoldo Lugones,1,11.11111111111111,8,1,9
-9,¿En qué país se celebró la primera Copa Mundial de Fútbol?,Brasil,Uruguay,Argentina,Italia,2,63.63636363636363,4,7,11
-8,¿Qué moneda utilizaba Argentina durante la presidencia de Bernardino Rivadavia?,Peso Moneda Nacional,Real,Austral,Escudo,1,68.75,5,11,16
-11,¿Qué relación tenía Eva Perón con el presidente Juan Domingo Perón?,Esposa,Hermana,Hija,Prima,1,18.181818181818183,9,2,11
-5,¿Qué río atraviesa la ciudad de Buenos Aires?,Río Paraná,Río de la Plata,Río Uruguay,Río Salado,2,30.0,7,3,10
-12,¿Qué ingrediente es fundamental para preparar el mate?,Yerba,Azúcar,Cáscara de Naranja,Menta,1,22.22222222222222,7,2,9
-10,¿Qué hecho histórico ocurrió en Argentina en 1816?,La Batalla de Tucumán,La Declaración de la Independencia,La Revolución de Mayo,La Batalla de Suipacha,2,9.523809523809524,19,2,21
-13,¿Cuál de estos balnearios se encuentra en Mar del Plata?,Las Grutas,La Perla,Cariló,Pinamar,1,57.14285714285714,6,8,14
+14,¿Quién es considerado el máximo exponente del tango en Argentina?,Carlos Gardel,Astor Piazzolla,Aníbal Troilo,Julio Sosa,3,1.9230769230769231,51,1,52
+26,¿Cuál es el equipo de fútbol con más títulos de la Copa Libertadores en Argentina?,River Plate,Boca Juniors,Independiente,Racing Club,3,83.2,5,44,49
+34,¿Cuál es la capital de Argentina?,Buenos Aires,Córdoba,Rosario,Mendoza,1,83.92857142857143,6,47,56
+21,¿Quién es considerado el creador de la bandera argentina?,José de San Martín,Manuel Belgrano,Bernardino Rivadavia,Carlos Pellegrini,2,78.57142857142857,9,33,42
+33,¿Cuál es la moneda oficial de Argentina?,Peso argentino,Dólar,Real,Euro,1,81.4,6,35,41
+31,¿Cuál es el pico más alto de Argentina?,Aconcagua,Fitz Roy,Cerro Torre,Lanín,1,87.2340425531915,4,41,47
+36,¿En qué año se declaró la independencia de Argentina?,1816,1810,1820,1813,1,65.45454545454545,19,36,55
+35,¿Qué provincia argentina es conocida por sus vinos?,Mendoza,Salta,La Rioja,San Juan,1,84.78260869565217,7,39,46
+24,¿Cuál es la flor nacional de Argentina?,Rosa,Ceibo,Jacarandá,Tulipán,2,84.84848484848484,5,28,33
+15,¿En qué ciudad nació Jorge Luis Borges?,Rosario,Buenos Aires,Mendoza,Córdoba,2,31.70731707317073,28,13,41
+38,¿Qué río forma la frontera natural entre Argentina y Uruguay?,Río Paraná,Río de la Plata,Río Iguazú,Río Uruguay,2,76.8,9,33,43
+40,¿Quién escribió el poema épico "Martín Fierro"?,José Hernández,Jorge Luis Borges,Ricardo Güiraldes,Domingo Faustino Sarmiento,1,65.9,12,29,41
+32,¿Qué cataratas famosas se encuentran en la frontera entre Argentina y Brasil?,Cataratas del Iguazú,Salto Ángel,Cataratas del Niágara,Cataratas del Nilo,1,90.47619047619048,4,57,63
+13,¿Cuál de estos balnearios se encuentra en Mar del Plata?,Las Grutas,La Perla,Cariló,Pinamar,2,31.70731707317073,28,13,41
+27,¿En qué año ocurrió la Revolución de Mayo?,1810,1816,1820,1806,1,84.78260869565217,7,39,46
+11,¿Qué relación tenía Eva Perón con el presidente Juan Domingo Perón?,Esposa,Hermana,Hija,Prima,1,16.0,21,4,25
+37,¿Qué baile es tradicionalmente asociado con Argentina?,Tango,Milonga,Cumbia,Samba,1,89.47368421052632,5,51,57
+9,¿En qué país se celebró la primera Copa Mundial de Fútbol?,Brasil,Uruguay,Argentina,Italia,2,30.76923076923077,18,8,26
+5,¿Qué río atraviesa la ciudad de Buenos Aires?,Río Paraná,Río de la Plata,Río Uruguay,Río Salado,2,25.0,27,9,36
+39,¿Quién fue el primer presidente de Argentina?,Cornelio Saavedra,Bernardino Rivadavia,Manuel Belgrano,Juan Manuel de Rosas,2,42.5,23,17,40
+12,¿Qué ingrediente es fundamental para preparar el mate?,Yerba,Azúcar,Cáscara de Naranja,Menta,1,26.08695652173913,17,6,23
+1,¿Qué edificio emblemático se encuentra en la Plaza de Mayo?,Obelisco,Cabildo,Teatro Colón,Catedral Metropolitana,2,12.76595744680851,41,6,47
+10,¿Qué hecho histórico ocurrió en Argentina en 1816?,La Batalla de Tucumán,La Declaración de la Independencia,La Revolución de Mayo,La Batalla de Suipacha,2,3.8461538461538463,50,2,52
+3,¿Qué escritor argentino es conocido como el autor del 'Facundo'?,Domingo Faustino Sarmiento,José Hernández,Esteban Echeverría,Leopoldo Lugones,1,7.894736842105263,35,3,38
+2,¿Qué álbum de Soda Stereo incluye la canción 'De Música Ligera'?,Canción Animal,Dynamo,Signos,Sueño Stereo,2,14.754098360655737,52,9,61
+7,¿Qué variedad de uva es típica de Mendoza?,Malbec,Chardonnay,Torrontés,Bonarda,1,12.5,35,5,40
+30,¿Qué isla argentina es conocida por su biodiversidad y está en el Atlántico Sur?,Isla de los Estados,Isla Martín García,Isla Grande de Tierra del Fuego,Islas Malvinas,4,69.23076923076923,12,27,39
+4,¿Qué parque nacional alberga el monte Aconcagua?,Parque Nacional Los Glaciares,Parque Nacional Aconcagua,Parque Nacional Nahuel Huapi,Parque Nacional Lanín,2,18.181818181818183,27,6,33
+6,¿Cuál era el apodo de José de San Martín durante las guerras de independencia?,El Gran Libertador,El Protector de los Andes,El Padre de la Patria,El General de los Andes,1,39.285714285714285,17,11,28
+23,¿Qué escritor argentino es autor de "Ficciones"?,Adolfo Bioy Casares,Julio Cortázar,Jorge Luis Borges,Leopoldo Lugones,3,74.35897435897436,10,29,39
+8,¿Qué moneda utilizaba Argentina durante la presidencia de Bernardino Rivadavia?,Peso Moneda Nacional,Real,Austral,Escudo,1,45.714285714285715,19,16,35

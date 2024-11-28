@@ -15,21 +15,12 @@ pygame.time.set_timer(un_segundo,1000)
 #Superficies y rectangulos
 carta_pregunta = pygame.image.load("imagenes/imagen_1.png")
 carta_pregunta = {"superficie":pygame.Surface(TAMAÑO_PREGUNTA),"rectangulo":pygame.Rect((0,0,0,0))}
-
-
 cuadro_vidas = {"superficie":pygame.Surface(TAMAÑO_CUADRO),"rectangulo":pygame.Rect((0,0,0,0))}
-cuadro_vidas['superficie'].fill(COLOR_ROJO)
-
 cuadro_tiempo = {"superficie":pygame.Surface(TAMAÑO_CUADRO),"rectangulo":pygame.Rect((0,0,0,0))}
-cuadro_tiempo['superficie'].fill(COLOR_GRIS)
+cuadro_pregunta = {"superficie":pygame.Surface(TAMAÑO_PREGUNTA),"rectangulo":pygame.Rect((0,0,0,0))}
+cuadro_pregunta['superficie'].fill((pygame.Color('bisque')))
 
-# cuadro_pregunta = crear_boton("imagenes/template.png",370,120,150, 228)
-# cuadro_pregunta = pygame.image.load("imagenes/template.png")
-cartas_preguntas = [{"superficie":pygame.Surface(TAMAÑO_PREGUNTA),"rectangulo":pygame.Rect((0,0,0,0))}]
-for carta in cartas_preguntas:
-    cuadro_pregunta = pygame.image.load("imagenes/template.png")
-    cuadro_pregunta = pygame.transform.scale(cuadro_pregunta,(370,120))
-    fuente_respuesta = pygame.font.SysFont("Arial Rounded MT Bold",25)
+
 # Carta de respuestas
 cartas_respuestas = [
     {"superficie":pygame.Surface(TAMAÑO_RESPUESTA),"rectangulo":pygame.Rect((0,0,0,0))},
@@ -41,10 +32,10 @@ cartas_respuestas = [
 for carta in cartas_respuestas:
     imagen_boton = pygame.image.load("imagenes/boton.png")
     imagen_boton = pygame.transform.scale(imagen_boton,(270,100))
-    imagen_boton.set_alpha(130)
+
 # Fuentes
     fuente_pregunta = pygame.font.SysFont("Arial Black",16)
-    fuente_respuesta = pygame.font.SysFont("Arial Rounded MT Bold",25)
+    fuente_respuesta = pygame.font.SysFont("Arial Rounded MT Bold",20)
     fuente_puntuacion = pygame.font.SysFont("Arial Black",15)
     fuente_vidas = pygame.font.SysFont("Arial Black",15)
     fuente_tiempo = pygame.font.SysFont("Arial Black",15)
@@ -65,30 +56,12 @@ indice_pregunta = 0
 vidas_actuales = CANTIDAD_OPORTUNIDADES
 segundos = 0
 minutos = MINUTOS
+aciertos_consecutivos = 0
 
-#LOGARITMO COMODIN
-def usar_comodin_pasar(indice_pregunta, lista_preguntas):
-    """
-    Permite pasar a la siguiente pregunta sin cambiar puntos ni vidas.
-    Si es la última pregunta, reinicia el índice y mezcla las preguntas.
-    """
-    indice_pregunta += 1
-    if indice_pregunta >= len(lista_preguntas):
-        indice_pregunta = 0
-        random.shuffle(lista_preguntas)
-    return indice_pregunta
-def blit_texto_en_boton(superficie, texto, coordenadas, fuente, color, fondo=(0, 0, 0, 0)):
-    # Crear una superficie temporal con el mismo tamaño que el botón
-    texto_superficie = pygame.Surface(superficie.get_size(), pygame.SRCALPHA)
-    texto_superficie.fill(fondo)  # Rellenar con el color de fondo
-
-    # Renderizar el texto y blittearlo en la superficie temporal
-    texto_renderizado = fuente.render(texto, True, color)
-    texto_superficie.blit(texto_renderizado, coordenadas)
-
-    # Blittear la superficie temporal en la superficie principal
-    superficie.blit(texto_superficie, (0, 0))
-    return superficie
+#Variables de los comodines
+comodin_x2_usado = False
+comodin_pasar_usado = False
+puntos_x2 = False 
 
 def mostrar_juego(pantalla:pygame.Surface, eventos):
     """
@@ -99,9 +72,47 @@ def mostrar_juego(pantalla:pygame.Surface, eventos):
     global minutos
     global segundos
     global fondo_de_pantalla
+    global aciertos_consecutivos
+    global comodin_x2_usado  
+    global comodin_pasar_usado
+    global puntos_x2
 
     retorno = "juego"
     pregunta = lista_preguntas[indice_pregunta]
+
+   
+    # Limpiar la pantalla antes de redibujar
+    pantalla.fill((0, 0, 0))
+
+    # Redibujar el fondo
+    fondo_de_pantalla = pygame.image.load("imagenes\preguntados_1.jpg")
+    fondo_de_pantalla = pygame.transform.scale(fondo_de_pantalla, (700, 800))
+    pantalla.blit(fondo_de_pantalla, (0, 0))
+
+    # Redibujar la imagen de la pregunta
+    imagen_juego = pygame.image.load("imagenes/imagen_1.png")
+    imagen_juego = pygame.transform.scale(imagen_juego, (340, 170))
+    pantalla.blit(imagen_juego, (170, 58))
+
+    #Imagen del comodin
+    imagen_comodin = pygame.image.load("imagenes\imagen_comoding.png")
+    imagen_comodin = pygame.transform.scale(imagen_comodin,(100,100))
+    # Dibujo de la imagen del comodín en el costado derecho
+    pantalla.blit(imagen_comodin, (PANTALLA[0] - imagen_comodin.get_width() - 10, 58))
+
+    # Redibujar el cuadro de la pregunta y el texto
+    pantalla.blit(cuadro_pregunta['superficie'], (170, 235))
+    blit_text(cuadro_pregunta['superficie'], pregunta['pregunta'], (10, 10), fuente_pregunta)
+
+    imagen_boton_pasar = crear_boton("imagenes\imagen_pasar.jpg",70,70,605,170)
+    pantalla.blit(imagen_boton_pasar["superficie"], imagen_boton_pasar["rectangulo"])
+
+    imagen_boton_x2 = crear_boton("imagenes\iconox2.png",70,70,605,270)
+    pantalla.blit(imagen_boton_x2["superficie"], imagen_boton_x2["rectangulo"])
+
+    # Limpiar las superficies de los botones antes de redibujarlas / agregadas horario 23:03 chatgtp
+    for carta in cartas_respuestas:
+        carta['superficie'].fill((0, 0, 0, 0))  # Rellenar con transparente para evitar superp
 
     for evento in eventos:
         pygame.mixer.music.set_volume(config.volumen / 100)
@@ -110,7 +121,6 @@ def mostrar_juego(pantalla:pygame.Surface, eventos):
             puntuacion = 0
         if evento.type == pygame.QUIT:
             retorno = "salir"
-
         if evento.type == pygame.KEYDOWN:  # Detecta teclas presionadas
             if evento.key == pygame.K_PLUS or evento.key == pygame.K_KP_PLUS:  # Tecla '+' (normal y en el teclado numérico)
                 if config.volumen < 96:
@@ -118,86 +128,119 @@ def mostrar_juego(pantalla:pygame.Surface, eventos):
             elif evento.key == pygame.K_MINUS or evento.key == pygame.K_KP_MINUS:  # Tecla '-' (normal y en el teclado numérico)
                 if config.volumen > 0:
                     config.volumen -= 5
-
-
+       # Manejo de comodines    
+        if evento.type == pygame.KEYDOWN:
+            if evento.key == pygame.K_p and not comodin_pasar_usado:  # Tecla 'P' para pasar
+                comodin_pasar_usado = True
+                # No suma ni resta puntos o vidas, solo pasa a la siguiente pregunta
+                indice_pregunta += 1
+                if indice_pregunta >= len(lista_preguntas):
+                    indice_pregunta = 0  # Reiniciar las preguntas si ya no quedan
+                pregunta = lista_preguntas[indice_pregunta]
+                sonido_correcto.play()
+                espacio_vacio = ''
+                blit_texto_en_boton(cuadro_pregunta['superficie'],espacio_vacio,(10,10),fuente_pregunta,COLOR_BLANCO)
+                cuadro_pregunta['superficie'].fill(pygame.Color('bisque'))
+            elif evento.key == pygame.K_x and not comodin_x2_usado:  # Tecla 'X' para X2
+                comodin_x2_usado = True
+                # Indicamos que ahora el próximo acierto duplicará los puntos
+                puntos_x2 = True
+                sonido_correcto.play()
+            if evento.key == pygame.K_x and comodin_x2_usado:
+                print("El comodin x2 solo se puede utilizar una vez sola")
+            elif evento.key == pygame.K_p and comodin_pasar_usado:
+                print("El comodin pasar solo se puede utilizar una vez sola")
+        # Dentro del manejo de la respuesta del jugador
         if evento.type == un_segundo:
-            cuadro_tiempo['superficie'].fill((COLOR_GRIS))
             if segundos == 0:
                 if minutos == 0:
                     # Se acabó el tiempo, perdes una vida
-                    vidas_actuales -= 1
-                    cuadro_vidas['superficie'].fill(COLOR_ROJO)
+                    
+                    retorno = "terminado"
+                    comodin_pasar_usado = False
+                    comodin_x2_usado = False
                     if vidas_actuales == 0:
                         #Resetea el tiempo y vidas para el siguiente juego
                         vidas_actuales = CANTIDAD_OPORTUNIDADES
                         minutos = MINUTOS
                         segundos = 0
                         retorno = "terminado"
+                        comodin_pasar_usado = False
+                        comodin_x2_usado = False
                 else:
                     minutos -= 1
                     segundos = 59
             else:
                 segundos -= 1
 
-        aciertos_consecutivos = 0
-        maxima_respuestas_por_vida = 3
-        if evento.type == pygame.MOUSEBUTTONDOWN:      
+        if evento.type == pygame.MOUSEBUTTONDOWN:
+            if imagen_boton_pasar['rectangulo'].collidepoint(evento.pos) and not comodin_pasar_usado:  # Tecla 'P' para pasar
+                comodin_pasar_usado = True
+                # No suma ni resta puntos o vidas, solo pasa a la siguiente pregunta
+                indice_pregunta += 1
+                if indice_pregunta >= len(lista_preguntas):
+                    indice_pregunta = 0  # Reiniciar las preguntas si ya no quedan
+                pregunta = lista_preguntas[indice_pregunta]
+                sonido_correcto.play()
+                espacio_vacio = ''
+                blit_texto_en_boton(cuadro_pregunta['superficie'],espacio_vacio,(10,10),fuente_pregunta,COLOR_BLANCO)
+                cuadro_pregunta['superficie'].fill(pygame.Color('bisque'))      
+            if imagen_boton_x2["rectangulo"].collidepoint(evento.pos) and not comodin_x2_usado:
+                comodin_x2_usado = True
+                # Indicamos que ahora el próximo acierto duplicará los puntos
+                puntos_x2 = True
+                sonido_correcto.play()
+            if imagen_boton_pasar['rectangulo'].collidepoint(evento.pos) and comodin_pasar_usado:
+                print("El comodin pasar solo se puede utilizar una vez sola")
+            elif imagen_boton_x2["rectangulo"].collidepoint(evento.pos) and comodin_x2_usado:
+                print("El comodin pasar x2 se puede utilizar una vez sola")
+        #Respuesta del jugador
             for i in range(len(cartas_respuestas)):
                 if cartas_respuestas[i]["rectangulo"].collidepoint(evento.pos):
-                    if int(pregunta['correcta']) == (i + 1):
+                    aciertos_consecutivos += 1
+                    if int(pregunta['correcta']) == (i + 1):                    
+                        if aciertos_consecutivos == 5:
+                            vidas_actuales += 1
+                            blit_text(pantalla, f"VIDAS: {vidas_actuales}", (615, 30), fuente_vidas, COLOR_BLANCO)
+                        # Reproducir sonido de respuesta correcta
                         sonido_correcto.play()
                         print("RESPUESTA CORRECTA")
-                        #Integracion Estadisticas
-                        
-                        aciertos_consecutivos += 1
-                        if aciertos_consecutivos >= maxima_respuestas_por_vida:
-                            vidas_actuales += 1  # Incrementa vidas_actuales
-                            aciertos_consecutivos = 0
-                            cuadro_vidas['superficie'].fill((COLOR_ROJO))
-                            pantalla.blit(cuadro_vidas['superficie'], (380, 10))
-                            # blit_text(cuadro_vidas['superficie'], f"VIDAS: {vidas_actuales}", (10, 20), fuente_vidas, COLOR_BLANCO)
-
-                                ##REVISAR. NO AGREGA VIDAS.
-                        # else: 
-                        #     aciertos_consecutivos = 0
-                        # pantalla.blit(cuadro_vidas['superficie'], (380, 10))
-                        # generar_estadistica(pregunta,lista_preguntas,True)              
-                        # carta_pregunta['superficie'].fill((COLOR_GRIS))
+                        cuadro_pregunta['superficie'].fill((pygame.Color('bisque')))
                         for carta in cartas_respuestas:
                             carta['superficie'].fill(COLOR_DORADO)
-
                         indice_pregunta += 1    
                         if indice_pregunta != len(lista_preguntas):
                             pregunta = lista_preguntas[indice_pregunta]
                         else:
-                            # Termino el juego
+                            # Termina el juego
                             indice_pregunta = 0
                             random.shuffle(lista_preguntas)
                             pregunta = lista_preguntas[indice_pregunta]
-
-                        puntuacion += 100
-                        # Resetear el tiempo para la siguiente pregunta
-                        # minutos = 2
-                        # segundos = 0
+                        if puntos_x2:  # Si X2 fue activado, duplicamos los puntos
+                            puntuacion += 200
+                        else:
+                            puntuacion += 100
+                            puntos_x2 = False  # Resetear X2 para que no se pueda usar de nuevo
                     else:
                         print("RESPUESTA INCORRECTA")
                         #Integracion Estadisticas
+                        cuadro_pregunta['superficie'].fill((pygame.Color('bisque')))
                         aciertos_consecutivos = 0
                         generar_estadistica(pregunta,lista_preguntas,False)
                         error_sonido.play()
-                        carta_pregunta['superficie'].fill((COLOR_GRIS))
                         for carta in cartas_respuestas:
                             carta['superficie'].fill(COLOR_DORADO)
-
                         indice_pregunta += 1
                         vidas_actuales -= 1
-                        cuadro_vidas['superficie'].fill((COLOR_ROJO)) 
+                        
                         if vidas_actuales == 0:
                             #Resetear el tiempo y vidas para el siguiente juego
                             vidas_actuales = CANTIDAD_OPORTUNIDADES
                             minutos = MINUTOS
                             segundos = 0
                             retorno = "terminado"
+                            comodin_pasar_usado = False
+                            comodin_x2_usado = False
 
                         if indice_pregunta != len(lista_preguntas):
                             pregunta = lista_preguntas[indice_pregunta]
@@ -205,96 +248,28 @@ def mostrar_juego(pantalla:pygame.Surface, eventos):
                             # Termino el juego
                             indice_pregunta = 0
                             random.shuffle(lista_preguntas)
-                            pregunta = lista_preguntas[indice_pregunta]
-
-                        puntuacion -= 50
+                            pregunta = lista_preguntas[indice_pregunta]                 
                         if puntuacion <= 0:
                             puntuacion = 0
-                        # puntuacion = min(-50,10000)
-                        # Resetear el tiempo para la siguiente pregunta
-                        # minutos = 2
-                        # segundos = 0
 
-
-    #Dibujo en pantalla
-    # pantalla.fill(COLOR_NEGRO)
-    fondo_de_pantalla = pygame.image.load("imagenes\preguntados_1.jpg")
-    fondo_de_pantalla = pygame.transform.scale(fondo_de_pantalla,(700,800))
-    pantalla.blit(fondo_de_pantalla,(0,0))
-    #Imagen
-    imagen_juego = pygame.image.load("imagenes/imagen_1.png")
-    imagen_juego = pygame.transform.scale(imagen_juego,(340,170))
-    pantalla.blit(imagen_juego,(170,58))
-
-
-    # Carta pregunta
-    
-    # Cartas respuestas
-    # boton = pygame.transform.scale(imagen_boton,(10,15))
-    # boton = cartas_respuestas[0]['rectangulo'] = pantalla.blit(cartas_respuestas[0]['superficie'], (125, 325))
-    # pantalla.blit(cartas_respuestas[0]['superficie'], carta['rectangulo'])
-    # blit_text(cartas_respuestas[0]['superficie'], pregunta['respuesta_1'], (20, 15), fuente_respuesta, COLOR_NEGRO)
-    
-
-
-    # Cuadro Vidas
-    pantalla.blit(cuadro_vidas['superficie'], (380, 10))
-    blit_text(cuadro_vidas['superficie'], f"VIDAS: {vidas_actuales}", (10, 20), fuente_vidas, COLOR_BLANCO)
-    
-    # Cuadro tiempo
-    pantalla.blit(cuadro_tiempo['superficie'], (210, 10))
-    blit_text(cuadro_tiempo['superficie'], f"TIEMPO      {minutos}:{segundos}", (21, 5), fuente_tiempo, COLOR_BLANCO)
-
-    # texto_superficie = pygame.Surface(cuadro_pregunta.get_size(), pygame.SRCALPHA)
-    # pantalla.blit(texto_superficie, (160, 228))  # Blittear el texto primero
-    # pantalla.blit(cuadro_pregunta, (160, 228)) 
-    
-    # # blit_text(cuadro_pregunta, pregunta['pregunta'], (10, 10), fuente_pregunta,COLOR_BLANCO)
-    # blit_texto_en_boton(cuadro_pregunta, pregunta['pregunta'], (10, 10), fuente_pregunta, COLOR_BLANCO)
-    # blit_texto_en_boton(cuadro_pregunta[])
-    texto_superficie = blit_texto_en_boton(cuadro_pregunta, pregunta['pregunta'], (10, 10), fuente_pregunta, COLOR_BLANCO)
-    pantalla.blit(texto_superficie, (160, 228))  # Blittear el texto primero
-    texto_superficie.fill((0, 0, 0, 0))
-    pantalla.blit(cuadro_pregunta, (160, 228))
-
-
+    pantalla.blit(cuadro_pregunta['superficie'], (170, 235))
+    blit_text(cuadro_pregunta['superficie'], pregunta['pregunta'], (10, 10), fuente_pregunta)
     coordenadas_botones = [(205, 385), (205, 485), (205, 585), (205, 685)]
     texto_superficie = pygame.Surface(imagen_boton.get_size(), pygame.SRCALPHA)
     texto_superficie.fill((0, 0, 0, 0))  # Rellenar con transparente
     for i, coordenadas in enumerate(coordenadas_botones):
         # blittear el botón
-        cartas_respuestas[i]['rectangulo'] = pantalla.blit(imagen_boton, coordenadas)
-        
+        cartas_respuestas[i]['rectangulo'] = pantalla.blit(imagen_boton, coordenadas)    
         # Limpiar la superficie temporal (opcional, pero recomendado)
         texto_superficie.fill((0, 0, 0, 0))
-
         # blittear el texto en la superficie temporal
-        blit_texto_en_boton(texto_superficie, pregunta[f"respuesta_{i+1}"], (35, 30), fuente_respuesta, COLOR_NEGRO)
-
+        blit_texto_en_boton(texto_superficie, pregunta[f"respuesta_{i+1}"], (20, 45), fuente_respuesta, COLOR_NEGRO)
         # blittear la superficie temporal en el botón
         pantalla.blit(texto_superficie, coordenadas)
         
-    # cartas_respuestas[0]['rectangulo'] = pantalla.blit(imagen_boton,(205, 385))
-    # cartas_respuestas[1]['rectangulo'] = pantalla.blit(imagen_boton,(205, 485))
-    # cartas_respuestas[2]['rectangulo'] = pantalla.blit(imagen_boton,(205, 585))
-    # cartas_respuestas[3]['rectangulo'] = pantalla.blit(imagen_boton,(205, 685))
-
-    # blit_text(imagen_boton, pregunta['respuesta_1'], (35, 15), fuente_respuesta, COLOR_NEGRO)
-    # blit_text(imagen_boton, pregunta['respuesta_2'], (35, 15), fuente_respuesta, COLOR_NEGRO)
-    # blit_text(imagen_boton, pregunta['respuesta_3'], (35, 15), fuente_respuesta, COLOR_NEGRO)
-    # blit_text(imagen_boton, pregunta['respuesta_4'], (35, 15), fuente_respuesta, COLOR_NEGRO)
-        
-    # pygame.display.update()
-    
     # Mostrar puntuación
-    blit_text(pantalla, f"Puntuación: {puntuacion} puntos", (10, 30), fuente_puntuacion, COLOR_CELESTE)
+    blit_text(pantalla, f"TIEMPO      {minutos}:{segundos}", (260, 5), fuente_tiempo, COLOR_BLANCO)
+    blit_text(pantalla, f"Puntuación: {puntuacion} puntos", (15, 30), fuente_puntuacion, COLOR_NEGRO)
+    blit_text(pantalla, f"VIDAS: {vidas_actuales}", (615, 30), fuente_vidas, COLOR_BLANCO)
     pygame.display.flip()
     return retorno
-
-
-
-
-
-# ...
-
-# Blittear la pregunta y el texto

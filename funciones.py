@@ -1,7 +1,7 @@
 import os
 import json
 import pygame
-
+import random
 #-----------------------------------MODULO DE FUNCIONES JUEGO ---------------------------------------------------
 
 def blit_text(surface, text, pos, font, color=pygame.Color('black')):
@@ -34,7 +34,7 @@ def crear_boton(path,coordenadas_escala_x,coordenadas_escala_y,coordenadas_en_x,
     path: El parámetro "path" en la función "crear_boton" es la ruta del archivo de la imagen que se usará para el botón. 
     coordenadas_escala_x: Se usa para especificar qué tan ancho debe ser el botón en píxeles tras 
     redimensionar la imagen original cargada desde la ruta dada.
-    coordenadas_escala_y: Se utiliza para redimensionar la imagen del botón a las dimensiones deseadas.
+    coordenadas_escala_y: Se utiliza para redimensionar la imagen del botón en base a las medidas de alto.
     coordenadas_en_x: Especifica la posición horizontal donde se ubicará el botón dentro de la ventana o área de visualización cuando se renderice.
     coordenadas_en_y: Se usa para posicionar el botón verticalmente dentro de la ventana o pantalla del juego.
     :return: Se devuelve un diccionario llamado `boton`. Este diccionario contiene dos pares clave-valor:
@@ -307,9 +307,30 @@ def intercambiar_matriz(lista,i,j):
     lista[i] = lista[j]
     lista[j] = aux
 
+# #LOGARITMO COMODIN
+# def usar_comodin_pasar(indice_pregunta, lista_preguntas):
+#     """
+#     Permite pasar a la siguiente pregunta sin cambiar puntos ni vidas.
+#     Si es la última pregunta, reinicia el índice y mezcla las preguntas.
+#     """
+#     indice_pregunta += 1
+#     if indice_pregunta >= len(lista_preguntas):
+#         indice_pregunta = 0
+#         random.shuffle(lista_preguntas)
+#     return indice_pregunta
 
+def blit_texto_en_boton(superficie, texto, coordenadas, fuente, color, fondo=(0, 0, 0, 0)):
+    # Crear una superficie temporal con el mismo tamaño que el botón
+    texto_superficie = pygame.Surface(superficie.get_size(), pygame.SRCALPHA)
+    texto_superficie.fill(fondo)  # Rellenar con el color de fondo
 
+    # Renderizar el texto y blittearlo en la superficie temporal
+    texto_renderizado = fuente.render(texto, True, color)
+    texto_superficie.blit(texto_renderizado, coordenadas)
 
+    # Blittear la superficie temporal en la superficie principal
+    superficie.blit(texto_superficie, (0, 0))
+    return superficie
 
 lista_preguntas = cargar_preguntas_desde_csv('preguntas.csv')
 normalizar_datos(lista_preguntas)

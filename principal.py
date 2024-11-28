@@ -2,6 +2,7 @@ import pygame
 from constantes import *
 from menu import *
 from juego import *
+from reglas import *
 from opciones import *
 from terminado import *
 from puntuaciones import *
@@ -37,6 +38,8 @@ while corriendo:
         ventana_actual = mostrar_juego(pantalla,pygame.event.get())
     elif ventana_actual == 'puntuaciones':
         ventana_actual = mostrar_puntuaciones(pantalla,pygame.event.get())
+    elif ventana_actual == 'reglas':
+        ventana_actual = mostrar_reglas(pantalla,pygame.event.get())    
     elif ventana_actual == 'terminado':
         if bandera_juego == False:
             pygame.mixer.music.stop() #Detiene mi música de fondo

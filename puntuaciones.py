@@ -12,7 +12,6 @@ fondo_de_pantalla = pygame.transform.scale(fondo_de_pantalla,(700,800))
 fuente = pygame.font.SysFont("Arial Rounded MT Bold",30)
 fuente_boton = pygame.font.SysFont("Arial Rounded MT Bold",23)
 
-
 #Sonido de click
 click_sonido = pygame.mixer.Sound("sonidos/click.mp3")
 click_sonido.set_volume(1)
@@ -21,7 +20,6 @@ boton_volver = crear_boton("imagenes/boton.png",170,50,260,750)
 
 def mostrar_puntuaciones(pantalla:pygame.Surface,eventos):
     global volumen
-
     retorno = "puntuaciones"
 
     for evento in eventos:
